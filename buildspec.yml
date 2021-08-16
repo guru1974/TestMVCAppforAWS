@@ -3,11 +3,11 @@ phases:
   pre_build:
     commands:
       - echo Restore started on `date`
-      - dotnet restore TestMVCAppforAWS.csproj
+      - dotnet restore ./TestMVCAppforAWS.csproj
   build:
     commands:
       - echo Build started on `date`
-      - dotnet publish -c release -o ./build_output TestMVCAppforAWS.csproj
+      - dotnet publish -c release -o ./build_output ./TestMVCAppforAWS.csproj
 artifacts:
   files:
     - CodeBuild-TestMVCAppforAWS/build_output/**/*
