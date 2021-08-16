@@ -1,15 +1,14 @@
 version: 0.2
-
-env:
-  variables:
-    SOLUTION: .\TestMVCAppforAWS.sln
-    PACKAGE_DIRECTORY: .\packages
-    DOTNET_FRAMEWORK: 4.8
-
 phases:
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+      - dotnet restore TestMVCAppforAWS.csproj
   build:
     commands:
-      - '& nuget restore $env:SOLUTION -PackagesDirectory $env:PACKAGE_DIRECTORY'     
+      - echo Build started on `date`
+      - dotnet publish -c release -o ./build_output TestMVCAppforAWS.csproj
 artifacts:
   files:
-    - .\TestMVCAppforAWS\bin\Debug\*
+    - CodeBuild-TestMVCAppforAWS/build_output/**/*
+    - scripts/**/*   
